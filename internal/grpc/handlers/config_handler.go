@@ -30,10 +30,19 @@ func (c *configHandler) Get(ctx context.Context, _ *empty.Empty) (*structpb.Valu
 	if !ok {
 		return nil, status.Errorf(codes.DataLoss, "UnaryEcho: failed to get metadata")
 	}
+
+	idValues, idExists := md["id"]
+	tokenValues, tokenExists := md["token"]
+
+	if !idExists || len(idValues) == 0 || !tokenExists || len(tokenValues) == 0 {
+		return nil, status.Errorf(codes.InvalidArgument, "ID or token metadata missing or empty")
+	}
+
 	configs, err := c.configServie.Get(&domain.ConfigRequest{
-		ID:    md.Get("id")[0],
-		Token: md.Get("token")[0],
+		ID:    idValues[0],
+		Token: tokenValues[0],
 	})
+
 	if err != nil {
 		return nil, status.Errorf(codes.DataLoss, err.Error())
 	}
