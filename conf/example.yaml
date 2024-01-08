@@ -1,0 +1,25 @@
+config-service:
+  id: "config-service"
+  token: "ini token"
+  config:
+    app: 
+      port: 50050
+    database: 
+      host: ""
+      port: 
+      name: ""
+      username: ""
+      password: ""
+
+post-service:
+  name: "post-service"
+  token: "ini token"
+  config:
+    app: 
+      port: 50051
+    database: 
+      host: "localhost"
+      port: 5432
+      name: ""
+      username: ""
+      password: ""
