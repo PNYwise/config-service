@@ -1,0 +1,6 @@
+conf/example.yaml
+cmd/main
+scripts
+social-media-proto
+.gitmodules
+.gitignore
